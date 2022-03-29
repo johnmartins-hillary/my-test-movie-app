@@ -135,6 +135,7 @@ function App() {
 
   const getMovie = async (e) => {
     e.preventDefault();
+    setMovies([]);
     try {
       const res = await axios.get(
         `https://www.omdbapi.com/?s=${searchText}&apiKey=bb2c5b2c`
