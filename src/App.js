@@ -13,6 +13,7 @@ const AppStyled = styled.div`
 const Banner = styled.div`
   position: relative;
   width: 100%;
+  height: 100vh;
   justify-content: flex-start;
   align-items: center;
   padding: 50px;
@@ -25,6 +26,7 @@ const Banner = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   font-family: sans-serif;
+  ${mobile({ height: "50vh" })}
 `;
 
 const BannerText = styled.div`
@@ -94,7 +96,7 @@ const MovieContainer = styled.div`
 const InputContainer = styled.div`
   display: flex;
   align-items: center;
-
+  justify-content: space-between;
   width: 100%;
   border: 1px solid #000;
   border-radius: 5px;
@@ -104,11 +106,12 @@ const InputContainer = styled.div`
   input {
     outline: none;
     border: none;
-    width: 80%;
+    flex: 0.9;
+    flex-grow: 1;
   }
 
   svg {
-    width: 20%;
+    flex: 0.1;
     color: #333;
     font-size: 25px;
   }
@@ -153,11 +156,11 @@ function App() {
         <BannerText>Watch Something incredible</BannerText>
       </Banner>
 
-      <SearchBar onSubmit={getMovie}>
+      <SearchBar onSubmit={(e) => getMovie(e)}>
         <label>Search</label>
         <InputContainer>
           <input type="text" onChange={(e) => setSearchText(e.target.value)} />
-          <AiOutlineSearch onClick={getMovie} />
+          <AiOutlineSearch onClick={(e) => getMovie(e)} />
         </InputContainer>
 
         <button type="submit"></button>
