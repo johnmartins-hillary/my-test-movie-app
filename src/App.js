@@ -137,7 +137,7 @@ function App() {
     e.preventDefault();
     try {
       const res = await axios.get(
-        `http://www.omdbapi.com/?s=${searchText}&apiKey=bb2c5b2c`
+        `https://www.omdbapi.com/?s=${searchText}&apiKey=bb2c5b2c`
       );
       if (res) {
         setMovies(res.data.Search);
@@ -156,12 +156,13 @@ function App() {
         <BannerText>Watch Something incredible</BannerText>
       </Banner>
 
-      <SearchBar>
+      <SearchBar onSubmit={getMovie}>
         <label>Search</label>
         <InputContainer>
           <input type="text" onChange={(e) => setSearchText(e.target.value)} />
           <AiOutlineSearch onClick={getMovie} />
         </InputContainer>
+        <button type="submit"></button>
       </SearchBar>
       <Body>
         {movies ? (
