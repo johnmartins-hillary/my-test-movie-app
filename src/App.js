@@ -156,14 +156,12 @@ function App() {
         <BannerText>Watch Something incredible</BannerText>
       </Banner>
 
-      <SearchBar onSubmit={(e) => getMovie(e)}>
+      <SearchBar>
         <label>Search</label>
         <InputContainer>
           <input type="text" onChange={(e) => setSearchText(e.target.value)} />
           <AiOutlineSearch onClick={(e) => getMovie(e)} />
         </InputContainer>
-
-        <button type="submit"></button>
       </SearchBar>
       <Body>
         {movies ? (
