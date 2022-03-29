@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import Header from "./components/Header";
 import axios from "axios";
@@ -131,17 +131,18 @@ const Error = styled.div`
 
 function App() {
   const [movies, setMovies] = useState([]);
-  const [searchText, setSearchText] = useState("");
+  const searchText = useRef();
 
   const getMovie = async (e) => {
     e.preventDefault();
     setMovies([]);
     try {
       const res = await axios.get(
-        `https://www.omdbapi.com/?s=${searchText}&apiKey=bb2c5b2c`
+        `https://www.omdbapi.com/?s=${searchText.current.value}&apiKey=bb2c5b2c`
       );
       if (res) {
         setMovies(res.data.Search);
+        searchText.current.focus();
       }
     } catch {}
   };
@@ -160,7 +161,7 @@ function App() {
       <SearchBar onSubmit={getMovie}>
         <label>Search</label>
         <InputContainer>
-          <input type="text" onChange={(e) => setSearchText(e.target.value)} />
+          <input type="text" ref={searchText} />
           <AiOutlineSearch onClick={getMovie} />
         </InputContainer>
         <button type="submit"></button>
