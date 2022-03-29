@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import axios from "axios";
 import { mobile } from "./responsive";
 import { dummyData } from "./dummyData.js";
+import { AiOutlineSearch } from "react-icons/ai";
 
 const AppStyled = styled.div`
   display: flex;
@@ -45,15 +46,6 @@ const SearchBar = styled.form`
   padding: 20px 50px;
   font-size: 20px;
   font-weight: 500;
-
-  input {
-    border: 1px solid #000;
-    outline: none;
-    border-radius: 5px;
-    height: 50px;
-    padding: 10px;
-    margin-top: 10px;
-  }
 
   button {
     display: none;
@@ -99,6 +91,29 @@ const MovieContainer = styled.div`
   }
 `;
 
+const InputContainer = styled.div`
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  border: 1px solid #000;
+  border-radius: 5px;
+  height: 50px;
+  padding: 10px;
+  margin-top: 10px;
+  input {
+    outline: none;
+    border: none;
+    width: 80%;
+  }
+
+  svg {
+    width: 20%;
+    color: #333;
+    font-size: 25px;
+  }
+`;
+
 const Error = styled.div`
   font-family: sans-serif;
   font-weight: 500;
@@ -124,8 +139,7 @@ function App() {
       if (res) {
         setMovies(res.data.Search);
       }
-    } catch{
-    }
+    } catch {}
   };
 
   useEffect(() => {
@@ -141,7 +155,11 @@ function App() {
 
       <SearchBar onSubmit={getMovie}>
         <label>Search</label>
-        <input type="text" onChange={(e) => setSearchText(e.target.value)} />
+        <InputContainer>
+          <input type="text" onChange={(e) => setSearchText(e.target.value)} />
+          <AiOutlineSearch onClick={getMovie} />
+        </InputContainer>
+
         <button type="submit"></button>
       </SearchBar>
       <Body>
