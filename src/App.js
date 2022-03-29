@@ -40,7 +40,7 @@ const BannerText = styled.div`
   ${mobile({ fontSize: "30px" })}
 `;
 
-const SearchBar = styled.form`
+const SearchBar = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-start;
@@ -160,7 +160,7 @@ function App() {
         <label>Search</label>
         <InputContainer>
           <input type="text" onChange={(e) => setSearchText(e.target.value)} />
-          <AiOutlineSearch onClick={(e) => getMovie(e)} />
+          <AiOutlineSearch onClick={getMovie} />
         </InputContainer>
       </SearchBar>
       <Body>
